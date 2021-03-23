@@ -43,10 +43,10 @@ uint32_t stoui(string str)
 {
 	uint32_t rank = 1;
 	uint32_t num = 0;
-
+	
 	for (int i = str.size() - 1; i >= 0; i--)
 	{
-		if (i > 9 || rank == 1000000000 && (str[i] > 4 || (str[i] == 4 && num > 294967295)))
+		if (i > 10 || rank == 1000000000 && (str[i] > 52 || (str[i] == 52 && num > 294967295)))
 		{
 			throw string("ERROR: not correct arguments");
 		}
@@ -141,8 +141,6 @@ int main()
 			}
 
 			cmd = spliteStr(str);
-
-			
 
 			if (!cmd.com.compare("U"))
 			{

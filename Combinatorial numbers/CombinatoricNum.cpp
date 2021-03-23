@@ -5,7 +5,7 @@ using namespace std;
 
 uint32_t placement(const uint32_t& m, const uint32_t& n)
 {
-	if (n == 0)
+	if (n == 0 || m == 1)
 		return 1;
 	if (n == 1)
 		return m;
@@ -90,9 +90,9 @@ uint32_t combinations(uint32_t m, uint32_t n)
 
 	for (int i = 2; i <= n; i++)
 	{
-		if (res / i <= (UINT32_MAX - (res % i) * (k / i)) / k)
+		if (res / i <= (UINT32_MAX - (res % i) * (k / i)) / k * i)
 		{
-			res = (res / i) * k + (res % i) * (k / i);
+			res = (res / i) * k + (res % i) * ((double)k / i);
 			k = k + 1;
 		}
 		else
@@ -126,7 +126,7 @@ uint32_t stirling(const uint32_t& m, const uint32_t& n)
 		{
 			if (k == n)
 			{
-				if (d[j] <= (UINT32_MAX - d[j - 1]) / j)
+				if (d[j] * j <= (UINT32_MAX - d[j - 1]))
 				{
 					d[j] = d[j - 1] + j * d[j];
 				}
@@ -137,9 +137,9 @@ uint32_t stirling(const uint32_t& m, const uint32_t& n)
 			}
 			else
 			{
-				if (d[j] <= (UINT32_MAX - d[j - 1]) / i)
+				if (d[j] <= (UINT32_MAX - i * d[j - 1]))
 				{
-					d[j] = d[j - 1] + i * d[j];
+					d[j] = d[j] + i * d[j - 1];
 				}
 				else
 				{
