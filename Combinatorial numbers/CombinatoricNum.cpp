@@ -90,7 +90,7 @@ uint32_t combinations(uint32_t m, uint32_t n)
 
 	for (int i = 2; i <= n; i++)
 	{
-		if (res / i <= (UINT32_MAX - (res % i) * (k / i)) / k * i)
+		if (res <= (UINT32_MAX - (res % i) * ((double)k / i)) / k * i)
 		{
 			res = (res / i) * k + (res % i) * ((double)k / i);
 			k = k + 1;
